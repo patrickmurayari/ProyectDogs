@@ -7,7 +7,7 @@ const {postDogs} = require('../controllers/postDog')
 
 router.get("/all" , getAllCharacters);
 router.get("/:id" , getDogId)
-router.post("/", postDogs)
+router.post("/postDog", postDogs)
 
 module.exports = router;
 

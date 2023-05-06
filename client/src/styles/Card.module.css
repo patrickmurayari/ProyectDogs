@@ -1,0 +1,19 @@
+.card{
+    border: 2px solid rgba(147, 138, 144, 0.876);
+    width: 70%;
+    font-size: 30px;
+    padding: 20px;
+    margin: 15px;
+    border-radius: 20px;
+    background-color: rgb(99, 89, 75);
+}
+
+img{
+    width: 100%;
+    border-radius: 15px;
+}
+
+.link{
+    text-decoration: none;
+    color: rgba(153, 21, 21, 0.795);
+}

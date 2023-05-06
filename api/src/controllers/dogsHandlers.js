@@ -6,42 +6,58 @@ const URL = process.env.API_URL;
 const MYAPI_KEY = process.env.API_KEY;
 
 const getApiInfo = async () => {
-    const apiUrl = await axios.get(`${URL}${MYAPI_KEY}`);
-    const apiInfo = await apiUrl.data.map(ch => {
-        return  {
-            id : ch.id,
-            image : ch.image.url,
-            name: ch.name,
-            weight : ch.weight.imperial,
-            height : ch.height.imperial,
-            life_span : ch.life_span
-        };
-    })
-    return apiInfo;
+    try {
+        const apiUrl = await axios.get(`${URL}${MYAPI_KEY}`);
+        const apiInfo = await apiUrl.data.map(ch => {
+            const temperaments = ch.temperament?.split(', ')
+            // console.log(c);
+            return  {
+                id : ch.id,
+                imagen : ch.image.url,
+                name: ch.name,
+                peso : ch.weight.imperial,
+                altura : ch.height.imperial,
+                lifes_span : ch.life_span,
+                temperament : temperaments
+            };
+        })
+        return apiInfo;
+    } catch (error) {
+        res.status(404).json({error: message.error})
+    }
 } 
 
 
 const getDogDb = async () => {
-    return await Dog.findAll({
-        include : {
-            model : Temperament,
-            attributes : ['name'],
-            through : {
-                attributes : [],
+    try {
+        return await Dog.findAll({
+            include : {
+                model : Temperament,
+                attributes : ['name'],
+                through : {
+                    attributes : [],
+                }
             }
-        }
-    })
+        })
+    } catch (error) {
+        res.status(404).json({error: message.error})
+    }
 };
 
 
 const getAllCharacter = async () => {
-    const  apiInfo = await getApiInfo();
-    const  dogDb = await getDogDb();
-    const infoTotal = apiInfo.concat(dogDb)
-    return infoTotal;
+    try {
+        const  apiInfo = await getApiInfo();
+        const  dogDb = await getDogDb();
+        const infoTotal = apiInfo.concat(dogDb)
+        return infoTotal;
+    } catch (error) {
+        res.status(404).json({error: message.error})
+    }
 }
 
 const getAllCharacters = async (req,res) => {
+    try {
         const name = req.query.name;
         let charactersTotal = await getAllCharacter();
         if(name) {
@@ -52,10 +68,13 @@ const getAllCharacters = async (req,res) => {
         } else {
             res.status(200).json(charactersTotal)
         }
+    } catch (error) {
+        res.status(404).json({error: message.error})
+    }
 }
 
 
 module.exports = {
     getAllCharacters,
-    getApiInfo
+    getAllCharacter
 }
