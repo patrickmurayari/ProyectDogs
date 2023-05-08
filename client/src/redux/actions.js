@@ -5,7 +5,8 @@ import  {GET_CHARACTERS,
         ORDER_PESO , 
         GET_NAME_SEARCH, 
         POST_DOG,
-        FILTER_TEMPERAMENTS, 
+        FILTER_TEMPERAMENTS,
+        HANDLE_NUMBER, 
         } 
         from "./typeActions"
 
@@ -40,18 +41,10 @@ export function getTemperaments () {
     }
 }
 
-export function filtergetTemperaments () {
-    return async function(dispatch) {
-        try {
-            var json = await axios.get(`http://localhost:3001/temperaments`, {
-            })
-            return dispatch({
-                type : FILTER_TEMPERAMENTS,
-                payload : json.data
-            }) 
-        } catch (error) {
-            console.log(`Message ${GET_TEMPERAMENTS}:`,error);
-        }
+export function filterTemperaments (payload) {
+    return {
+        type : FILTER_TEMPERAMENTS,
+        payload
     }
 }
 
@@ -81,15 +74,13 @@ export function postDogs (payload) {
     }
 }
 
-// export function getDetail (id) {
-//     return async function (dispatch) {
-//         const json = await axios.get(`http://localhost:3001/dogs/${id}`)
-//         return dispatch({
-//             type : GET_DETAIL,
-//             payload : json.data
-//         })
-//     }
-// }
+
+export function handleNumber (payload) {
+    return {
+        type : HANDLE_NUMBER,
+        payload
+    }
+}
 
 export function filterCreated (payload) {
     return {

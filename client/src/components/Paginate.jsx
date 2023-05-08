@@ -1,24 +1,18 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { handleNumber } from "../redux/actions";
+import style from "../styles/Home.module.css"
 
-
-
-export default function Paginate ({charactersPerPage, allCharacters,paginate}) {
-    const pageNumbers = [];
-
-    for (let i = 0; i <= Math.ceil(allCharacters/charactersPerPage); i++) {
-        pageNumbers.push(i+1);
+export default function Paginate ({cantPages}) {
+    const dispatch = useDispatch();
+    const number = (n) => {
+        dispatch(handleNumber(n))
     }
-
     return (
         <div>
-            {
-                pageNumbers &&
-                pageNumbers.map(number => (
-                    <li key={number}>
-                        <button onClick={() => paginate(number)}>{number}</button>
-                    </li>
-                ))
-            }
+            {cantPages && cantPages.map((e,i) => (
+                    <button className={style.button} onClick={() => number(i+1)} >{i+1}</button>
+                ))}
         </div>
     )
 }

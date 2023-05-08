@@ -1,10 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
-import { getDetail } from "../redux/actions";
 import axios from "axios";
-
+import style from  "../styles/Detail.module.css";
 
 export default function Detail() {
     const {id} = useParams();
@@ -14,10 +12,7 @@ export default function Detail() {
         async function getDetail () {
             try {
             const {data} = await axios(`http://localhost:3001/dogs/${id}`);
-            console.log(':::DATA:::',data[0]);
-        // console.log('___DATA___',data);
             if (data[0].name) {
-            // setDog(json.data)
             setDog({name: data[0].name ,
                     imagen: data[0].imagen ,
                     lifes_span : data[0].lifes_span ,
@@ -37,44 +32,18 @@ export default function Detail() {
     return setDog({});
 },[id])
 
-console.log('::::DOGSTATE:::',dog);
     return (
-        <div>
-            <h1>DETAIL</h1>
-            <h1>{id}</h1>
-            <img src={dog.imagen} alt="img" />
-            <h1>{dog.altura}</h1>
-            <h1>{dog.peso}</h1>
-            <h1>{dog.lifes_span}</h1>
-            <h1>{!dog.createdInDb? dog.temperament  + ' ' : dog.temperament.map((el) => el.name + (' '))}</h1>
-            <Link to="/home"><button>Volver</button></Link>
+        <div className={style.card_detail} >
+            <h1>DETALLE</h1>
+            <div className={style.detail}>
+                <h3>Identificador de {dog.name} : ID_{id}</h3>
+                <h3>La altura es : {dog.altura}</h3>
+                <h3>Su peso es de : {dog.peso}</h3>
+                <h3>Años de vida : {dog.lifes_span}</h3>
+                <h3>Temperamentos : {!dog.createdInDb? dog.temperament  + ' ' : dog.temperament.map((el) => el.name + (' '))}</h3>
+            </div>
+            <img  src={dog.imagen} alt="img" />
+            <Link to="/home"><button className={style.button} >Volver</button></Link>
         </div>
     )
 }
-
-
-
-
-
-// async function getDetail () {
-//     try {
-//         const json = await axios(`http://localhost:3001/dogs/${id}`);
-//         console.log(':::DATA:::',json.data[0].name);
-//         // console.log('___DATA___',data);
-//         if (json.data) {
-//             setDog(json.data)
-//             // setDog({name: data[0].name ,
-//             //         imagen: data[0].imagen ,
-//             //         lifes_span : data[0].lifes_span ,
-//             //         peso : data[0].peso ,
-//             //         altura : data[0].altura} )
-//             console.log('::::DOGSTATE:::',dog[0]);
-//         }else {
-//             window.alert("No ha personaje con ese ID");
-//         }
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
-// getDetail();
-// return setDog({});

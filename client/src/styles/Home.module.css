@@ -1,0 +1,49 @@
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    position: center;
+    top: 70%;
+    left: 50%;
+    transform: translate(-5%, -5%);
+
+  }
+  
+  .button:hover {
+    background-color: #2E8B57;
+  }
+
+  .selectcontainer {
+    position: relative;
+    width: 200px; /* Ancho del select */
+  }
+  
+  select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #020e03;
+    border-radius: 5px;
+    background-color: #a27135;
+  }
+
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+
+  label:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }

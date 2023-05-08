@@ -1,8 +1,9 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { Link , useNavigate  } from "react-router-dom";
-import { postDogs, getTemperaments } from "../redux/actions";
+import { postDogs } from "../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import style from "../styles/Form.module.css"
 
 export default function DogCreated() {
     const dispatch = useDispatch();
@@ -11,23 +12,25 @@ export default function DogCreated() {
     const [error, setError] = useState({
         name : "",
         imagen: "",
-        altura : "",
-        peso : "",
+        altura1 :"",
+        altura2 :"",
+        alturaError : "",
+        peso1 : "",
+        peso2 : "",
+        pesoError : "",
         lifes_span : "",
         temperament: "",
     })
     const [input , setInput] = useState({
         name : "",
         imagen: "",
-        altura : "",
-        peso : "",
+        altura1: "", 
+        altura2 :"",
+        peso1 : "",
+        peso2 : "",
         lifes_span : "",
         temperament : [],
     })
-
-    useEffect(() => {
-        dispatch(getTemperaments())
-    },[]) 
 
     const validate = (input) => {
         let obj = {}
@@ -37,18 +40,27 @@ export default function DogCreated() {
         else if (!input.imagen) {
             obj.imagen = "Ingrese una imagen";
         }
-        else if (!input.altura){
-            obj.altura = "Ingrese una altura";
+        else if (!input.altura1){
+            obj.altura1 = "Ingrese una altura Min ";
         }
-        else if(!input.peso) {
-            obj.peso = "Ingrese un peso";
+        else if(!input.altura2){
+            obj.altura2 = "Ingrese altura Max"
+        }
+        else if(input.altura1 > input.altura2){
+            obj.alturaError = "La altura Min no puede ser mayor a Max"
+        }
+        else if(!input.peso1) {
+            obj.peso1 = "Ingrese un peso MIn";
+        }
+        else if (!input.peso2) {
+            obj.peso2 = "Ingrese un peso Max";
+        }
+        else if (input.peso1 > input.peso2) {
+            obj.pesoError = "El peso Min no puede ser mayor a Max"
         }
         else if(!input.lifes_span){
             obj.lifes_span = "Ingrese años de vida"
         }
-        // else if(input.temperament.length === 0 ){
-        //     obj.temperament = "Seleccione un temperamento"
-        // }
         return obj
     }
 
@@ -69,8 +81,6 @@ export default function DogCreated() {
             ...input,
             temperament : [...input.temperament,event.target.value]
         })
-        console.log(':::input.temperaments:::::',input.temperament);
-        console.log(input);
     }
 
     const handleDelete = (el) => {
@@ -82,34 +92,40 @@ export default function DogCreated() {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log('::',input);
+        console.log('::ENVIAR::',input);
         dispatch(postDogs(input))
         alert('Personaje Creado');
         setInput({
             name : "",
             imagen: "",
-            altura : "",
-            peso : "",
+            altura1 : "",
+            altura2 : "",
+            peso1 : "",
+            peso2 : "",
             lifes_span : "",
             temperament : [],
         })
         setError({
             name : "",
             imagen: "",
-            altura : "",
-            peso : "",
+            altura1 : "",
+            altura2 : "",
+            alturaError : "",
+            peso1 : "",
+            peso2 : "",
+            pesoError : "",
             lifes_span : "",
+            temperament : "",
         })
         navigate("/home")
     }
-
-
-
+    console.log('::::INPUT::::' , input);
+    console.log('::::ERROR::::' , error);
     return (
         <div>
-            <Link to="/home"><button>Volver</button></Link>
+            <Link to="/home"><button className={style.button} >Volver</button></Link>
             <h1>Crea tu Raza de Perro</h1>
-            <form onSubmit={(e) => handleSubmit(e)} >
+            <form className={style.form} onSubmit={(e) => handleSubmit(e)} >
                 <div>
                     <label>Nombre:</label>
                     <input  type="text" 
@@ -118,6 +134,7 @@ export default function DogCreated() {
                             onChange={(e) => handleChangeInput(e)} />
                     {error.name && (<p>{error.name}</p>)}
                 </div>
+                <br />
                 <div>
                     <label>Imagen:</label>
                     <input  type="text" 
@@ -126,49 +143,70 @@ export default function DogCreated() {
                             onChange={(e) => handleChangeInput(e)} />
                     {error.imagen && (<p>{error.imagen}</p>)}
                 </div>
+                <br />
                 <div>
-                    <label>Altura:</label>
+                    <label>Altura Minima:</label>
                     <input  type="number" 
-                            value={input.altura}
-                            name="altura"
+                            value={input.altura1}
+                            name="altura1"
+                            className={style.input}
                             onChange={(e) => handleChangeInput(e)} />
-                    {error.altura && (<p>{error.altura}</p>)}
+                    {error.altura1 && (<p>{error.altura1}</p>)}
+                    <label>Maxima:</label>
+                    <input  type = "number"
+                            name = "altura2"
+                            value= {input.altura2}
+                            className={style.input}
+                            onChange={(e) => handleChangeInput(e)}></input>
+                    {error.altura2 && (<p>{error.altura2}</p>)}
+                    {error.alturaError && (<p>{error.alturaError}</p>)}
                 </div>
+                <br />
                 <div>
-                    <label>Peso:</label>
-                    <input  type="text" 
-                            value={input.peso}
-                            name="peso"
+                    <label>Peso Minimo:</label>
+                    <input  type="number" 
+                            value={input.peso1}
+                            name="peso1"
+                            className={style.input}
                             onChange={(e) => handleChangeInput(e)}/>
-                    {error.peso && (<p>{error.peso}</p>)}
+                    {error.peso1 && (<p>{error.peso1}</p>)}
+                    <label>Maximo:</label>
+                    <input  type="number" 
+                            value={input.peso2}
+                            name="peso2"
+                            className={style.input}
+                            onChange={(e) => handleChangeInput(e)}/>
+                    {error.peso2 && (<p>{error.peso2}</p>)}
+                    {error.pesoError && (<p>{error.pesoError}</p>)}
                 </div>
+                <br />
                 <div>
                     <label>Años de vida:</label>
-                    <input  type="text" 
+                    <input  type="number" 
                             value={input.lifes_span}
                             name="lifes_span"
                             onChange={(e) => handleChangeInput(e)} />
                     {error.lifes_span && (<p>{error.lifes_span}</p>)}
                 </div>
+                <br />
                 <label>Temperamentos: </label>
                 <select onChange={(e) => handleSelect(e)} >
                     {
-                        Temperaments?.map((tem,i) => (
+                        Temperaments && Temperaments.map((tem,i) => (
                             <option key={i}  value={tem.name}>{tem.name}</option>
-                        ))
-                    }
+                            ))
+                        }
                 </select>
-                {/* {error.temperament && (<p>{error.temperament}</p>)} */}
                 <br />
-                {input.temperament.map(el =>{
-                            return (
-                                <div>
+                {input.temperament && input.temperament.map((el,i) =>{
+                    return (
+                        <div key={i} >
                                     <p>{el}</p>
                                     <button onClick={()=>handleDelete(el)}>X</button>
                                 </div>
                             )
-                        
-                })}
+                            
+                        })}
                 {
                     Object.keys(error).length === 0 ?
                     (<button type="submit">Crear Raza de Perro</button>):

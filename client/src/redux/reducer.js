@@ -5,7 +5,9 @@ import { GET_CHARACTERS ,
         GET_TEMPERAMENTS, 
         GET_NAME_SEARCH, 
         POST_DOG,
-        FILTER_TEMPERAMENTS} 
+        FILTER_TEMPERAMENTS,
+        HANDLE_NUMBER
+    } 
     from "./typeActions";
 
 const initialState = {
@@ -13,7 +15,8 @@ const initialState = {
     alldogsCharacters :[],
     dogstemperaments : [],
     dogDetail:[],
-    dogstemperamentsFilter : []
+    numPage : 1, 
+    // dogstemperamentsFilter : []
 }
 
 const rootReducer = (state = initialState, {type,payload}) => {
@@ -38,17 +41,35 @@ const rootReducer = (state = initialState, {type,payload}) => {
             return {
                 ...state,
             }
-        case FILTER_TEMPERAMENTS:
+        case HANDLE_NUMBER: 
             return {
                 ...state,
-                dogstemperamentsFilter : [...payload]
-            }    
-        case FILTER_CREATED:
-            let filteredDogs = payload === 'created'? state.alldogsCharacters.filter(el => el.createdInDb) : state.alldogsCharacters.filter(el => el.hasOwnProperty(el.createdInDb) === false)
-            let filteredAll = payload === 'all'? state.alldogsCharacters : filteredDogs
-            return{
-                dogCharacters : filteredAll
+                numPage : payload,
             }
+        case FILTER_TEMPERAMENTS :
+            let filterDog = state.alldogsCharacters.filter((el) => el.temperament?.includes(payload))
+            return{
+                ...state,
+                dogCharacters: [...filterDog]
+            }
+        case FILTER_CREATED:
+            // let filteredDogs = payload === 'created'? state.alldogsCharacters.filter(el => el.hasOwnProperty("createdInDb")) : state.alldogsCharacters
+            // if (payload === "created") {
+            //     filteredDogs =  state.alldogsCharacters.filter(el => el.hasOwnProperty("createdInDb"))
+            // } else if (payload === "api"){
+            //     filteredDogs = state.alldogsCharacters
+            // }
+            // let filteredAll = payload === 'all'? state.alldogsCharacters : filteredDogs
+            return{
+                numPage: 1,
+                dogCharacters :  state.alldogsCharacters.filter((el) => el.hasOwnProperty("createdInDb"))
+                // payload === 'all'? state.alldogsCharacters : filteredDogs
+            }
+//             case FILTER_CREATED:
+//             return {
+//                 ...state,
+//                 dogs: payload === "Created" ? state.dogsOrigin.filter((d) => d.hasOwnProperty("created")) : state.dogsOrigin.filter((d) => !d.hasOwnProperty("created"))
+//             }
         case ORDER_ALFABETICO:
             let sortedArr = payload === "ascAlfa" ? 
                 state.dogCharacters.sort(function (a,b) {

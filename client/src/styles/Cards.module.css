@@ -1,6 +1,14 @@
 .cards_container{
-    display: flex;
+    /* display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between */
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 3fr));
+    grid-gap: 20px;
+
+    /* display: flex;
     flex-wrap: wrap;
     padding: 24px;
-    justify-content: space-around;
+    justify-content: space-around; */
 }

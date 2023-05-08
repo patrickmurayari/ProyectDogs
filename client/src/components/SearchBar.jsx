@@ -2,6 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { getNameSearch } from "../redux/actions";
+import style from "../styles/SearchBar.module.css";
 
 
 export default function GetNameSearch () {
@@ -12,7 +13,6 @@ export default function GetNameSearch () {
         event.preventDefault();
         const valor = event.target.value;
         setName(valor)
-        console.log(name);
     }
 
     const handleSubmit = (event) => {
@@ -23,11 +23,12 @@ export default function GetNameSearch () {
     return (
         <div>
             <input 
+                className={style.input}
                 type = "text"
                 placeholder = "Buscar"
                 onChange={(e) => handleInputChange(e)}
             />
-            <button type = "submit" onClick={(e) => handleSubmit(e)}>Buscar</button>
+            <button className={style.button} type = "submit" onClick={(e) => handleSubmit(e)}>Buscar</button>
         </div>
     )
 }
