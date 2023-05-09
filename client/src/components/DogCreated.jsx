@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import style from "../styles/Form.module.css"
 
 export default function DogCreated() {
+    // const regex = /^\d+([\.,]\d+)?$/;
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const Temperaments = useSelector((state) => state.dogstemperaments);
@@ -124,72 +125,73 @@ export default function DogCreated() {
     return (
         <div>
             <Link to="/home"><button className={style.button} >Volver</button></Link>
-            <h1>Crea tu Raza de Perro</h1>
+            <h1>Create the race that you like the most</h1>
+            <div  >
             <form className={style.form} onSubmit={(e) => handleSubmit(e)} >
                 <div>
-                    <label>Nombre:</label>
+                    <label>Name:</label>
                     <input  type="text" 
                             value={input.name}
                             name="name"
                             onChange={(e) => handleChangeInput(e)} />
-                    {error.name && (<p>{error.name}</p>)}
+                    {error.name && (<p className={style.error} >{error.name}</p>)}
                 </div>
                 <br />
                 <div>
-                    <label>Imagen:</label>
+                    <label>Image:</label>
                     <input  type="text" 
                             value={input.imagen}
                             name="imagen"
                             onChange={(e) => handleChangeInput(e)} />
-                    {error.imagen && (<p>{error.imagen}</p>)}
+                    {error.imagen && (<p className={style.error} >{error.imagen}</p>)}
                 </div>
                 <br />
                 <div>
-                    <label>Altura Minima:</label>
+                    <label>Minimun Height:</label>
                     <input  type="number" 
                             value={input.altura1}
                             name="altura1"
                             className={style.input}
                             onChange={(e) => handleChangeInput(e)} />
-                    {error.altura1 && (<p>{error.altura1}</p>)}
-                    <label>Maxima:</label>
+                    {error.altura1 && (<p className={style.error} >{error.altura1}</p>)}
+                    <label>Maximum:</label>
                     <input  type = "number"
                             name = "altura2"
                             value= {input.altura2}
                             className={style.input}
                             onChange={(e) => handleChangeInput(e)}></input>
-                    {error.altura2 && (<p>{error.altura2}</p>)}
-                    {error.alturaError && (<p>{error.alturaError}</p>)}
+                    {error.altura2 && (<p className={style.error} >{error.altura2}</p>)}
+                    {error.alturaError && (<p className={style.error} >{error.alturaError}</p>)}
                 </div>
                 <br />
                 <div>
-                    <label>Peso Minimo:</label>
+                    <label>Weight Minimun :</label>
                     <input  type="number" 
                             value={input.peso1}
                             name="peso1"
                             className={style.input}
                             onChange={(e) => handleChangeInput(e)}/>
-                    {error.peso1 && (<p>{error.peso1}</p>)}
-                    <label>Maximo:</label>
+                    {error.peso1 && (<p className={style.error} >{error.peso1}</p>)}
+                    <label>Maximum:</label>
                     <input  type="number" 
                             value={input.peso2}
                             name="peso2"
                             className={style.input}
                             onChange={(e) => handleChangeInput(e)}/>
-                    {error.peso2 && (<p>{error.peso2}</p>)}
-                    {error.pesoError && (<p>{error.pesoError}</p>)}
+                    {error.peso2 && (<p className={style.error} >{error.peso2}</p>)}
+                    {error.pesoError && (<p className={style.error}  >{error.pesoError}</p>)}
                 </div>
                 <br />
                 <div>
-                    <label>Años de vida:</label>
+                    <label>Years of life:</label>
                     <input  type="number" 
                             value={input.lifes_span}
                             name="lifes_span"
                             onChange={(e) => handleChangeInput(e)} />
-                    {error.lifes_span && (<p>{error.lifes_span}</p>)}
+                    {error.lifes_span && (<p className={style.error} >{error.lifes_span}</p>)}
                 </div>
                 <br />
-                <label>Temperamentos: </label>
+                <label>Temperaments: </label>
                 <select onChange={(e) => handleSelect(e)} >
                     {
                         Temperaments && Temperaments.map((tem,i) => (
@@ -209,10 +211,11 @@ export default function DogCreated() {
                         })}
                 {
                     Object.keys(error).length === 0 ?
-                    (<button type="submit">Crear Raza de Perro</button>):
+                    (<button type="submit">Create Race</button>):
                     (<div>INSERT INFO</div>)
                 }
             </form>
+        </div>
         </div>
     )
 }

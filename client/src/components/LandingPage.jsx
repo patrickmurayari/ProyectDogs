@@ -4,10 +4,12 @@ import style from "../styles/Landing.module.css"
 export default function LandingPage () {
     return (
         <div>
-            <h1 className={style.title} >BIENVENIDOS A MI APP DE DOGS</h1>
-            <Link to='/home'>
-                <button className={style.button}>Ingresar</button>
-            </Link>
+            <div className={style.container} >
+                <h1 className={style.title} >Welcome to my Dogs App </h1>
+                <Link to='/home'>
+                    <button className={style.button}>Get Into</button>
+                </Link>
+            </div>
         </div>
     )
 }

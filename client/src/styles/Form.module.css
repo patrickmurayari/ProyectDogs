@@ -32,3 +32,10 @@
   .button:hover {
     background-color: #2E8B57;
   }
+
+  .error{
+    color : #c0392b;
+    background-color: #efc0bb;
+  }
+
+  

@@ -47,3 +47,19 @@
     cursor: pointer;
     text-decoration: underline;
   }
+
+  /* .containerPage {
+    display: flex;
+    justify-content: center;
+  } */
+
+  .containerHome {
+    display: flex;
+    justify-content: center;
+  }
+
+  .selectdiv {
+    display: flex;
+    justify-content: center;
+    margin-left: 300px ;
+  } 

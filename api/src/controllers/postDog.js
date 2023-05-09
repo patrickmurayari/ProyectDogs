@@ -2,12 +2,14 @@ const {Dog , Temperament} = require('../db')
 
 const postDogs = async (req,res) => {
     try {
-        let {name,imagen,altura,peso,lifes_span,temperament} = req.body
+        let {name,imagen,altura1,altura2,peso1,peso2,lifes_span,temperament} = req.body
+        let alturaTotal = altura1 + " - " + altura2;
+        let pesoTotal = peso1 + " - " + peso2;
         let dogCreated = await Dog.create({
             name,
             imagen,
-            altura,
-            peso,
+            altura : alturaTotal,
+            peso : pesoTotal,
             lifes_span
         })
         let DogDB = await Temperament.findAll({ where : { name : temperament }})

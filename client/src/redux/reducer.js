@@ -53,23 +53,11 @@ const rootReducer = (state = initialState, {type,payload}) => {
                 dogCharacters: [...filterDog]
             }
         case FILTER_CREATED:
-            // let filteredDogs = payload === 'created'? state.alldogsCharacters.filter(el => el.hasOwnProperty("createdInDb")) : state.alldogsCharacters
-            // if (payload === "created") {
-            //     filteredDogs =  state.alldogsCharacters.filter(el => el.hasOwnProperty("createdInDb"))
-            // } else if (payload === "api"){
-            //     filteredDogs = state.alldogsCharacters
-            // }
-            // let filteredAll = payload === 'all'? state.alldogsCharacters : filteredDogs
             return{
                 numPage: 1,
-                dogCharacters :  state.alldogsCharacters.filter((el) => el.hasOwnProperty("createdInDb"))
-                // payload === 'all'? state.alldogsCharacters : filteredDogs
+                dogCharacters : payload 
             }
-//             case FILTER_CREATED:
-//             return {
-//                 ...state,
-//                 dogs: payload === "Created" ? state.dogsOrigin.filter((d) => d.hasOwnProperty("created")) : state.dogsOrigin.filter((d) => !d.hasOwnProperty("created"))
-//             }
+//  
         case ORDER_ALFABETICO:
             let sortedArr = payload === "ascAlfa" ? 
                 state.dogCharacters.sort(function (a,b) {

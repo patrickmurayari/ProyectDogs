@@ -33,3 +33,7 @@
   left: 37%;
   transform: translate(-20%, -20%);
   }
+  
+  .container{
+    height: 1000px;
+  }

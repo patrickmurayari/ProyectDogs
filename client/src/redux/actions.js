@@ -82,10 +82,15 @@ export function handleNumber (payload) {
     }
 }
 
+
 export function filterCreated (payload) {
-    return {
-        type : FILTER_CREATED,
-        payload,
+    return async function( dispatch) {
+        var {data} = await axios.get(`http://localhost:3001/dogs/all`)
+        let filter = payload === "created"? data.filter((el) => el.hasOwnProperty("createdInDb")) : data.filter((el) => !el.hasOwnProperty("createdInDb"));
+        return dispatch ({
+            type: FILTER_CREATED,
+            payload: filter,
+        })
     }
 }
 

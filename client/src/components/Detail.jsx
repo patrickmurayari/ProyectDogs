@@ -34,13 +34,13 @@ export default function Detail() {
 
     return (
         <div className={style.card_detail} >
-            <h1>DETALLE</h1>
+            <h1>DETAIL</h1>
             <div className={style.detail}>
-                <h3>Identificador de {dog.name} : ID_{id}</h3>
-                <h3>La altura es : {dog.altura}</h3>
-                <h3>Su peso es de : {dog.peso}</h3>
-                <h3>Años de vida : {dog.lifes_span}</h3>
-                <h3>Temperamentos : {!dog.createdInDb? dog.temperament  + ' ' : dog.temperament.map((el) => el.name + (' '))}</h3>
+                <h3>Identifier of {dog.name} is : ID_{id}</h3>
+                <h3>His height is : {dog.altura}</h3>
+                <h3>Its weight is : {dog.peso}</h3>
+                <h3>Years of life : {dog.lifes_span}</h3>
+                <h3>Temperaments : {!dog.createdInDb? dog.temperament  + ' ' : dog.temperament.map((el) => el.name + (' '))}</h3>
             </div>
             <img  src={dog.imagen} alt="img" />
             <Link to="/home"><button className={style.button} >Volver</button></Link>

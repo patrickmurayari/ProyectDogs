@@ -23,31 +23,25 @@ export default function Home () {
 
     let desde = (numPage-1) * 8;
     let hasta = numPage * 8 ;
-
     let cantPages = Math.floor(allCharacters.length / 8);
     let viewDog = allCharacters.slice(desde,hasta)
 
-    console.log('::::allCharacters::::', allCharacters);
-    console.log('::::numPage::::', numPage);
-    console.log('::::desde::::', desde);
-    console.log('::::hasta::::', hasta);
-    console.log('::::cantPages::::', cantPages);
-    console.log('::::viewDog::::', viewDog);
 
     useEffect(() => {
         dispatch(getCharacters());
-        console.log('DISPATCH');
         dispatch(getTemperaments())
     },[dispatch])
 
     const handleClick = (e) => {
         e.preventDefault();
         dispatch(getCharacters());
+        dispatch(getTemperaments())
     }
 
     const handleFilter = (event) => {
         event.preventDefault();
         const value = event.target.value;
+        dispatch(getTemperaments())
         dispatch(filterCreated(value))
     }
 
@@ -65,49 +59,50 @@ export default function Home () {
         const valueTem = event.target.value;
         dispatch(filterTemperaments(valueTem))
     }
-
+    
     return (
-        <div>
+    <div>
             <Link to ='/form'><button className={styles.button}>Crea un perrito</button></Link>
-            <h1>PROYECTO INDIVIDUAL DOGS</h1>
+                <h1>Single Project DOGS</h1>
+            <div className={style.selectdiv} >    
             <button className={styles.button} onClick={e => {handleClick(e)}}>
-                Volver a cargar Dogs
+                Reload Dog
             </button>
-            <div>
+            </div>
                 <select className={styles.select} onChange={(e) => handleOrder1(e)}>
-                    <option value="ascAlfa"  >Ascendente Por orden Alfabetico</option>
-                    <option value="descAlfa" >Descendente Por orden Alfabetico</option>
+                    <option value="ascAlfa"  >Alphabetical order A-z</option>
+                    <option value="descAlfa" >Alphabetical order Z-a</option>
                 </select>
                 <select onChange={(e)=> handleOrder2(e)}>
-                    <option value="ascPeso"  >Ascendente Por Peso</option>
-                    <option value="descPeso" >Descendente Por peso</option>
+                    <option value="ascPeso"  >Ascending order : Weight</option>
+                    <option value="descPeso" >Descending order : Weight</option>
                 </select>
-                {/* <h2 className={styles.label} >Temperamentos:</h2> */}
                     <select onChange={(e)=>handleTemperaments(e)}>
                         {
                             allTemperaments && allTemperaments.map ((el,i) =>(
-                                    <option key={i}
-                                            value={el.name}>{el.name}</option>
-                            ))
-                        }
+                                <option key={i}
+                                value={el.name}>{el.name}</option>
+                                ))
+                            }
                     </select>
                 <select onChange={(e) => handleFilter(e)} >
-                    <option>Todos</option>
-                    <option value="created" >Creados</option>
+                    <option>All</option>
+                    <option value="all" >Existing</option>
+                    <option value="created" >Created</option>
                     {/* <option value="api" >Existentes</option> */}
                 </select>
+                <div className={style.selectdiv}>
                 <SearchBar />
-                <div>
-                <Paginate cantPages={allCharacters.slice(0,cantPages)}></Paginate>
                 </div>
+                <Paginate cantPages={allCharacters.slice(0,cantPages)}></Paginate>
                 <div className={style.cards_container}>
                 {
                     viewDog && viewDog.map((c) => {
                         return (
-                                <Card
-                                        key={c.id}
-                                        id={c.id} 
-                                        name={c.name} 
+                            <Card
+                            key={c.id}
+                            id={c.id} 
+                            name={c.name} 
                                         imagen={c.imagen} 
                                         peso={c.peso}
                                         createdInDb = {c.createdInDb? c.createdInDb : null} 
@@ -116,7 +111,6 @@ export default function Home () {
                         )})
                     }
                 </div>
-            </div>
-        </div>
+    </div>
     )
 }
