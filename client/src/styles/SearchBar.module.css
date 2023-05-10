@@ -33,3 +33,14 @@ button[type="submit"] {
     outline: none;
     box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.5);
   }
+
+  .container {
+    text-align: center;
+    justify-content: flex-start;
+  }
+  
+  input[type="submit"], button {
+    display: inline-block;
+    vertical-align: top;
+    margin-right: auto;
+  }

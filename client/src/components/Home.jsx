@@ -62,14 +62,19 @@ export default function Home () {
     
     return (
     <div>
-            <Link to ='/form'><button className={styles.button}>Crea un perrito</button></Link>
-                <h1>Single Project DOGS</h1>
-            <div className={style.selectdiv} >    
+            <br></br>
+            <div className={style.containerButton}>
+            <Link to ='/form'><button className={styles.button}>Create a puppy</button></Link>
+            <br></br>  
             <button className={styles.button} onClick={e => {handleClick(e)}}>
-                Reload Dog
+                Reload all Dogs
             </button>
+            <br></br>
+            <SearchBar />
             </div>
-                <select className={styles.select} onChange={(e) => handleOrder1(e)}>
+            <br></br>
+            <div className={style.select} >
+                <select onChange={(e) => handleOrder1(e)}>
                     <option value="ascAlfa"  >Alphabetical order A-z</option>
                     <option value="descAlfa" >Alphabetical order Z-a</option>
                 </select>
@@ -91,10 +96,11 @@ export default function Home () {
                     <option value="created" >Created</option>
                     {/* <option value="api" >Existentes</option> */}
                 </select>
-                <div className={style.selectdiv}>
-                <SearchBar />
-                </div>
+            </div>
+                <br></br>
+                <br></br>
                 <Paginate cantPages={allCharacters.slice(0,cantPages)}></Paginate>
+                <br></br>
                 <div className={style.cards_container}>
                 {
                     viewDog && viewDog.map((c) => {

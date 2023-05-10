@@ -21,7 +21,7 @@ export default function GetNameSearch () {
     }
 
     return (
-        <div>
+        <div className={style.container} >
             <input 
                 className={style.input}
                 type = "text"

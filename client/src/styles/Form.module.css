@@ -1,3 +1,16 @@
+/* .formulario {
+  margin: 70px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 400px;
+  box-shadow: 0 0 10px rgba(24, 52, 127, 0.2);
+  border-radius: 10px;
+  overflow: hidden; 
+} */
+
+
+
 .form {
     display: flex;
     flex-direction: column;
@@ -11,6 +24,9 @@
 }
 
 .button {
+    margin: 40px;
+    display: block;
+    margin-left: 980px;
     display: inline-block;
     padding: 10px 20px;
     background-color: #4CAF50;
@@ -36,6 +52,25 @@
   .error{
     color : #c0392b;
     background-color: #efc0bb;
+  }
+
+  .buttonDelete{
+    margin-left: 10px;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+    position: center;
+    top: 70%;
+    left: 50%;
+    transform: translate(-5%, -5%);
   }
 
   

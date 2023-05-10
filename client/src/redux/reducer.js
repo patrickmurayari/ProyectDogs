@@ -57,7 +57,6 @@ const rootReducer = (state = initialState, {type,payload}) => {
                 numPage: 1,
                 dogCharacters : payload 
             }
-//  
         case ORDER_ALFABETICO:
             let sortedArr = payload === "ascAlfa" ? 
                 state.dogCharacters.sort(function (a,b) {

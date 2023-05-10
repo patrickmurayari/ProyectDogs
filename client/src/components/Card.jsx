@@ -14,13 +14,12 @@ export default function Card ({id,name,imagen,peso,temperament, createdInDb}) {
                 !createdInDb?
                 temperament && temperament.map((el,i) => { 
                     return (
-                            <div className={style.listas}>
-                                <ul>
-                                <li key={i} name={el} >{el}</li>
+                            <div key={i} className={style.listas}>
+                                <ul >
+                                <li  name={el} >{el}</li>
                                 </ul>
                             </div>
                             )
-                // <li key={i} name={el} >{el}</li>
                 }) :
                 temperament && temperament.map((el,i) => 
                 <li key={i} name={el} >{el.name}</li>

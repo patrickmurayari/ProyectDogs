@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { handleNumber } from "../redux/actions";
-import style from "../styles/Home.module.css"
+import style from "../styles/Paginate.module.css"
 
 export default function Paginate ({cantPages}) {
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ export default function Paginate ({cantPages}) {
     return (
         <div>
             {cantPages && cantPages.map((e,i) => (
-                    <button className={style.button} onClick={() => number(i+1)} >{i+1}</button>
+                    <button key={i} className={style.button} onClick={() => number(i+1)} >{i+1}</button>
                 ))}
         </div>
     )

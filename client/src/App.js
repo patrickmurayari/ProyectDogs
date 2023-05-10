@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
     <div className="App">
-      <h1>Henry Dogs</h1>
+      {/* <h1>Henry</h1> */}
     </div>
     <Routes>
       <Route exact path="/" element={<LandingPage />} />

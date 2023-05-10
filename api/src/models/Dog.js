@@ -19,15 +19,15 @@ module.exports = (sequelize) => {
       allowNull: false,
     },
     altura : {
-      type:  DataTypes.STRING,
+      type:  DataTypes.TEXT,
       allowNull: false,
     },
     peso : {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     lifes_span : {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     createdInDb : {
