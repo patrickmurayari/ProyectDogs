@@ -10,7 +10,6 @@ const getApiInfo = async () => {
         const apiUrl = await axios.get(`${URL}${MYAPI_KEY}`);
         const apiInfo = await apiUrl.data.map(ch => {
             const temperaments = ch.temperament?.split(', ')
-            // console.log(c);
             return  {
                 id : ch.id,
                 imagen : ch.image.url,
@@ -64,7 +63,7 @@ const getAllCharacters = async (req,res) => {
             let characterName = await charactersTotal.filter(el => el.name.toLowerCase().includes(name.toLowerCase()))
             characterName.length ? 
             res.status(200).json(characterName) :
-            res.status(400).json('No esta el personaje');
+            res.status(400).json('No esta el Dog');
         } else {
             res.status(200).json(charactersTotal)
         }

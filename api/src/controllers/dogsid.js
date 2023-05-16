@@ -8,7 +8,7 @@ const getDogId = async (req,res) => {
             let FilterDogs = await allDogs.filter((el) => el.id == id)
             FilterDogs.length ? 
             res.status(200).send(FilterDogs) :
-            res.status(404).json({message: 'No tengo el personaje'});
+            res.status(404).json({message: 'No existe el dog'});
         }
     } catch (error) {
         res.status(404).json({error: message.error})
