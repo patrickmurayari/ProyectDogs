@@ -6,7 +6,9 @@ import { GET_CHARACTERS ,
         GET_NAME_SEARCH, 
         POST_DOG,
         FILTER_TEMPERAMENTS,
-        HANDLE_NUMBER
+        HANDLE_NUMBER,
+        NEXT_PAGE,
+        PREV_PAGE
     } 
     from "./typeActions";
 
@@ -105,6 +107,16 @@ const rootReducer = (state = initialState, {type,payload}) => {
                 ...state,
                 dogCharacters : [...sortedArrPeso],
             }
+            case NEXT_PAGE:
+                return {
+                    ...state,
+                    numPage: state.numPage + 1,
+                };
+            case PREV_PAGE:
+                return {
+                    ...state,
+                    numPage: state.numPage - 1,
+                };
         default:
             return {...state}
     }

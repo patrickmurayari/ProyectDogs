@@ -1,3 +1,4 @@
+
 import  {GET_CHARACTERS, 
         GET_TEMPERAMENTS , 
         FILTER_CREATED, 
@@ -7,22 +8,24 @@ import  {GET_CHARACTERS,
         POST_DOG,
         FILTER_TEMPERAMENTS,
         HANDLE_NUMBER, 
+        PREV_PAGE,
+        NEXT_PAGE
         } 
         from "./typeActions"
 
 import axios from "axios";
 
-export const getCharacters = () => {
+export function getCharacters () {
     return async function(dispatch) {
         try {
             var json = await axios.get(`http://localhost:3001/dogs/all`)
-            return dispatch({
-                type: GET_CHARACTERS,
-                payload: json.data
-            })     
+            return dispatch ({
+                type : GET_CHARACTERS,
+                payload : json.data
+                    })
         } catch (error) {
-            console.log(`Message ${GET_CHARACTERS}:`,error);
-        }
+            alert(`Message ${GET_CHARACTERS}:`,error);
+        }     
     }
 }
 
@@ -36,7 +39,7 @@ export function getTemperaments () {
                 payload : json.data
             }) 
         } catch (error) {
-            console.log(`Message ${GET_TEMPERAMENTS}:`,error);
+            alert(`Message ${GET_TEMPERAMENTS}:`,error);
         }
     }
 }
@@ -57,7 +60,7 @@ export function getNameSearch (name) {
                 payload: getName.data
             })
         } catch (error) {
-            console.log(`Message ${GET_NAME_SEARCH}:`,error);
+            alert(`Message ${GET_NAME_SEARCH}:`,error);
         }
     }
 }
@@ -69,7 +72,7 @@ export function postDogs (payload) {
             const post = await axios.post(`http://localhost:3001/dogs/postDog`,payload);
             return post;
         } catch (error) {
-            console.log(`Message ${POST_DOG}:`,error);
+            alert(`Message ${POST_DOG}:`,error);
         }
     }
 }
@@ -85,12 +88,16 @@ export function handleNumber (payload) {
 
 export function filterCreated (payload) {
     return async function( dispatch) {
-        var {data} = await axios.get(`http://localhost:3001/dogs/all`)
-        let filter = payload === "created"? data.filter((el) => el.hasOwnProperty("createdInDb")) : data.filter((el) => !el.hasOwnProperty("createdInDb"));
-        return dispatch ({
-            type: FILTER_CREATED,
-            payload: filter,
-        })
+        try {
+            var {data} = await axios.get(`http://localhost:3001/dogs/all`)
+            let filter = payload === "created"? data.filter((el) => el.hasOwnProperty("createdInDb")) : data.filter((el) => !el.hasOwnProperty("createdInDb"));
+            return dispatch ({
+                type: FILTER_CREATED,
+                payload: filter,
+            })
+        } catch (error) {
+            alert(`Message ${FILTER_CREATED}:`,error)
+        }
     }
 }
 
@@ -107,3 +114,15 @@ export function orderPorPeso (payload) {
         payload,
     }
 }
+
+export function prevPage() {
+    return {
+      type: PREV_PAGE,
+    };
+  }
+  
+  export function nextPage() {
+    return {
+      type: NEXT_PAGE,
+    };
+  }

@@ -1,33 +1,33 @@
+.nav{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    /* background-color: rgb(135, 143, 220); */
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px;
+}
+
 .button {
-    margin: 12px;
-    display: inline-block;
-    padding: 25px 40px;
+    /* display:block;
+    margin: 0 auto; */
+    padding: 15px 30px;
     background-color: #4CAF50;
     color: #ffffff;
     border-radius: 5px;
     border: none;
     text-align: center;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 19px;
     cursor: pointer;
     transition: background-color 0.3s ease-in-out;
     position: center;
-    top: 100%;
+    top: 70%;
     left: 50%;
     transform: translate(-5%, -5%);
+
   }
   
   .button:hover {
     background-color: #2E8B57;
   }
-
-  .page{
-    display: flex;
-    justify-content: center
-}
-.page p, h3 {
-    background-color: rgb(132, 197, 152);
-    border-radius: 10px;
-    margin: 16px;
-    padding: 16px;
-}

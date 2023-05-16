@@ -48,19 +48,19 @@ export default function DogCreated() {
             obj.imagen = "Ingrese una imagen valida"
         }
         else if (!input.altura1){
-            obj.altura1 = "Ingrese una altura Min ";
+            obj.altura1 = "Ingrese una altura Minima";
         }
         else if(!input.altura2){
-            obj.altura2 = "Ingrese altura Max"
+            obj.altura2 = "Ingrese altura Maxima"
         }
         else if(input.altura1 > input.altura2){
             obj.alturaError = "La altura Min no puede ser mayor a Max"
         }
         else if(!input.peso1) {
-            obj.peso1 = "Ingrese un peso MIn";
+            obj.peso1 = "Ingrese un peso Minima";
         }
         else if (!input.peso2) {
-            obj.peso2 = "Ingrese un peso Max";
+            obj.peso2 = "Ingrese un peso Maxima";
         }
         else if (input.peso1 > input.peso2) {
             obj.pesoError = "El peso Min no puede ser mayor a Max"
@@ -102,40 +102,36 @@ export default function DogCreated() {
         })
     }
 
-    const handleDelete = (el) => {
-        setInput({
-            ...input,
-            temperament : input.temperament.filter(tem => tem !== el)
-        })
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault();
-        dispatch(postDogs(input))
-        alert('Puppy created successfully');
-        setInput({
-            name : "",
-            imagen: "",
-            altura1 : "",
-            altura2 : "",
-            peso1 : "",
-            peso2 : "",
-            lifes_span : "",
-            temperament : [],
-        })
-        setError({
-            name : "",
-            imagen: "",
-            altura1 : "",
-            altura2 : "",
-            alturaError : "",
-            peso1 : "",
-            peso2 : "",
-            pesoError : "",
-            lifes_span : "",
-            temperament : "",
-        })
-        navigate("/home")
+        const aux = Object.keys(error)
+        if (aux.length === 0){
+            dispatch(postDogs(input))
+            alert('Puppy created successfully');
+            setInput({
+                name : "",
+                imagen: "",
+                altura1 : "",
+                altura2 : "",
+                peso1 : "",
+                peso2 : "",
+                lifes_span : "",
+                temperament : [],
+            })
+            setError({
+                name : "",
+                imagen: "",
+                altura1 : "",
+                altura2 : "",
+                alturaError : "",
+                peso1 : "",
+                peso2 : "",
+                pesoError : "",
+                lifes_span : "",
+                temperament : "",
+            })
+            navigate("/home")
+        }
     }
     return (
         <div >
@@ -220,7 +216,6 @@ export default function DogCreated() {
                 {input.temperament && input.temperament.map((el,i) =>{
                     return (
                         <div key={i} >
-                                    <button className={style.buttonDelete} onClick={()=>handleDelete(el)}>X</button>
                                     <h3>{el}</h3>
                         </div>
                             )

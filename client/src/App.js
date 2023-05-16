@@ -5,14 +5,20 @@ import LandingPage from "./components/LandingPage"
 import Home from './components/Home';
 import DogCreated from './components/DogCreated';
 import Detail from './components/Detail';
+import { useLocation } from 'react-router-dom';
+import Nav from './components/Nav';
 
 function App() {
+
+  const location = useLocation();
 
   return (
     <div>
     <div className="App">
-      {/* <h1>Henry</h1> */}
     </div>
+      {/* {
+        location.pathname === "/"? null : <Nav />
+      } */}
     <Routes>
       <Route exact path="/" element={<LandingPage />} />
       <Route path="/home" element={<Home />}  />    

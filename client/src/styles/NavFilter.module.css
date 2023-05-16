@@ -1,0 +1,9 @@
+.nav{
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    /* background-color: rgb(135, 143, 220); */
+    padding: 20px;
+    border-radius: 6px;
+    box-shadow: 2px 2px 2px;
+}

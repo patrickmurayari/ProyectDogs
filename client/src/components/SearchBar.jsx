@@ -25,10 +25,13 @@ export default function GetNameSearch () {
             <input 
                 className={style.input}
                 type = "text"
-                placeholder = "Buscar"
+                placeholder = "Search"
                 onChange={(e) => handleInputChange(e)}
             />
-            <button className={style.button} type = "submit" onClick={(e) => handleSubmit(e)}>Search</button>
+            <button className={style.button} 
+                    type = "submit" 
+                    onClick={(e) => handleSubmit(e)}
+                    >Search</button>
         </div>
     )
 }

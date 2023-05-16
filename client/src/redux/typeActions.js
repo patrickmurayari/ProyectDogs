@@ -8,3 +8,5 @@ export const FILTER_TEMPERAMENTS = "FILTER_TEMPERAMENTS";
 export const ORDER_PESO = "ORDER_PESO";
 export const ORDER_ALFABETICO = "ORDER_ALFABETICO";
 export const HANDLE_NUMBER = "HANDLE_NUMBER"
+export const NEXT_PAGE = "NEXT_PAGE"
+export const PREV_PAGE = "PREV_PAGE"

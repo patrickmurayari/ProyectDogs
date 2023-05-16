@@ -2,9 +2,9 @@ const {Dog , Temperament} = require('../db')
 
 const postDogs = async (req,res) => {
     try {
-        let {name,imagen,altura1,altura2,peso1,peso2,lifes_span,temperament} = req.body
-        let alturaTotal = altura1 + " - " + altura2;
-        let pesoTotal = peso1 + " - " + peso2;
+        let {name,imagen,alturaMin,alturaMax,pesoMin,pesoMax,lifes_span,temperament} = req.body
+        let alturaTotal = alturaMin + " - " + alturaMax;
+        let pesoTotal = pesoMin + " - " + pesoMax;
         let dogCreated = await Dog.create({
             name,
             imagen,
